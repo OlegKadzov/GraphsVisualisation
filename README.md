@@ -1,20 +1,20 @@
-It is a simple Windows Forms application that allows you to create nodes of a directed graph, as well as add arcs.
-There is also saving the graph to a file and uploading the graph from a file (without saving the coordinates of the nodes).
-The program also implements the ability to find an arc with maximum multiplicity.
+This is a simple Windows Forms-based application that allows you to create vertices in a directed graph and add edges.
+It includes the ability to save a graph to a file and load a graph from a file (without saving vertex coordinates).
+The program also includes a function to find the edge with the highest multiplicity.
 
-Also, through the use of double buffering, has been added the ability to move nodes with the mouse
+In addition, thanks to the use of double buffering, you can move vertices with the mouse.
 
 <image src="https://github.com/Qullfie/GraphsVisualisation/blob/master/images%20for%20readme/pic1.png">
-  <p align = "center">Figure 1 – the start window of the program</p> <br>
+  <p align = "center">Figure 1 – Start window of the program</p> <br>
 <image src="https://github.com/Qullfie/GraphsVisualisation/blob/master/images%20for%20readme/pic2.png">
-  <p align = "center">Figure 2 – the process of adding nodes</p> <br> 
+  <p align = "center">Figure 2 – The process of adding nodes</p> <br> 
 <image src="https://github.com/Qullfie/GraphsVisualisation/blob/master/images%20for%20readme/pic3.png">
-  <p align = "center">Figure 3 – the process of adding directional arcs</p> <br>
+  <p align = "center">Figure 3 – The process of adding directional arcs</p> <br>
 <image src="https://github.com/Qullfie/GraphsVisualisation/blob/master/images%20for%20readme/pic4.png">
- <p align = "center"> Figure 4 – moved the nodes with the mouse</p> <br>
+ <p align = "center"> Figure 4 – Moved the nodes with the mouse</p> <br>
 <image src="https://github.com/Qullfie/GraphsVisualisation/blob/master/images%20for%20readme/pic5.png">
- <p align = "center"> Figure 5 – added 1 more edge (1.5) and 2 edges (4.1) and calculated the maximum multiplicity</p> <br>
+ <p align = "center"> Figure 5 – Added 1 more edge (1.5) and 2 edges (4.1) and calculated the maximum multiplicity</p> <br>
 <image src="https://github.com/Qullfie/GraphsVisualisation/blob/master/images%20for%20readme/pic6.png">
-<p align = "center">Figure 6 – saved the graph to a file</p>
+<p align = "center">Figure 6 – Saved the graph to a file</p>
 
 
