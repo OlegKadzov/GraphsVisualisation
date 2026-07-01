@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using static GraphsVisualisation.Graph;
@@ -16,7 +17,7 @@ namespace GraphsVisualisation
 
             nodePositions = new Dictionary<GraphNode, Point>();
             UpdateNodePositions();
-            DoubleBuffered = true;//Двойная буферизация
+            DoubleBuffered = true;//Double buffering
         }
 
         private void UpdateNodePositions()
@@ -74,30 +75,27 @@ namespace GraphsVisualisation
             }
             catch (FormatException)
             {
-                MessageBox.Show("Неверный формт ввода");
+                MessageBox.Show("Invalid input format");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
 
         }
 
         private void addEdgeBtn_Click(object sender, EventArgs e)
         {
-            int from = Convert.ToInt32(fromTB.Text);
-            int to = Convert.ToInt32(toTB.Text);
-            try
+            if (int.TryParse(fromTB.Text, out int from) && int.TryParse(toTB.Text, out int to))
             {
                 graph.AddEdge(from, to);
+                Invalidate();
             }
-            catch (Exception ex)
+
+            else
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Please enter valid node numbers.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-
         }
 
 
@@ -123,7 +121,7 @@ namespace GraphsVisualisation
                 Point endPoint = nodePositions[edge.To];
                 Color arrowColor = Color.Gray;
 
-                //Вычисление количества таких же дуг
+                //Calculating the number of identical arcs
                 if (graph.EdgeList.Count(SuchAnEdge => SuchAnEdge.From == edge.From && SuchAnEdge.To == edge.To) > 1) arrowColor = Color.SaddleBrown;
 
                 DrawArrow(g, startPoint, endPoint, arrowColor);
@@ -147,19 +145,19 @@ namespace GraphsVisualisation
             Pen pen = new Pen(arrowColor);
             pen.Width = 2;
 
-            // Вычисляем угол наклона линии
+            // Calculating the angle of inclination of a line
             float angle = (float)(Math.Atan2(endPoint.Y - startPoint.Y, endPoint.X - startPoint.X) * 180 / Math.PI);
 
-            // Вычисляем координаты конца линии с отступом от узла
+            // Calculate the coordinates of the end of the line at a distance from the node
             float arrowSize = 10;
             float endX = endPoint.X - arrowSize * (float)Math.Cos(angle * Math.PI / 180);
             float endY = endPoint.Y - arrowSize * (float)Math.Sin(angle * Math.PI / 180);
 
 
-            //Рисуем линию
+            //Draw a line
             g.DrawLine(pen, startPoint, new Point((int)endX, (int)endY));
 
-            //Рисуем стрелку
+            //Draw an arrow
 
             AdjustableArrowCap arrowCap = new AdjustableArrowCap(arrowSize, arrowSize, true);
             pen.CustomEndCap = arrowCap;
@@ -186,7 +184,7 @@ namespace GraphsVisualisation
             if (selectedNode != null)
             {
                 nodePositions[selectedNode] = new Point(e.X - mouseOffset.X, e.Y - mouseOffset.Y);
-                Invalidate(); // Перерисовываем форму
+                Invalidate(); // Redraw the form
             }
         }
 
@@ -206,37 +204,54 @@ namespace GraphsVisualisation
 
         private void saveBtn_Click(object sender, EventArgs e)
         {
-            string filename = "C:\\Users\\User\\source\\repos\\GraphsVisualisation\\graph.txt";
-            using (StreamWriter writer = new StreamWriter(filename))
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
-                try
+                saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog.Title = "Save Graph Data";
+                saveFileDialog.FileName = "graph.txt";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    graph.SaveToFile(writer);
-                    MessageBox.Show("граф успешно сохранен");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        using (StreamWriter writer = new StreamWriter(saveFileDialog.FileName))
+                        {
+                        }
+
+                        MessageBox.Show("Graph saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error saving file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
-
         }
 
         private void loadBtn_Click(object sender, EventArgs e)
         {
-            string filename = "C:\\Users\\User\\source\\repos\\GraphsVisualisation\\graph.txt";
-            try
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                using (StreamReader reader = new StreamReader(filename))
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                openFileDialog.Title = "Load Graph Data";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    graph = new Graph();
-                    graph = Graph.LoadFromFile(reader);
-                    UpdateNodePositions();
+                    try
+                    {
+                        using (StreamReader reader = new StreamReader(openFileDialog.FileName))
+                        {
+                            graph = Graph.LoadFromFile(reader);
+                            UpdateNodePositions();
+                        }
+
+                        MessageBox.Show("Graph loaded successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error loading file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
     }

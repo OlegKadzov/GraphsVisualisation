@@ -51,7 +51,7 @@
             addNodeBtn.Name = "addNodeBtn";
             addNodeBtn.Size = new Size(143, 31);
             addNodeBtn.TabIndex = 3;
-            addNodeBtn.Text = "Добавить узел";
+            addNodeBtn.Text = "Add a node";
             addNodeBtn.UseVisualStyleBackColor = true;
             addNodeBtn.Click += addNodeBtn_Click;
             // 
@@ -61,7 +61,7 @@
             addNodeTB.Name = "addNodeTB";
             addNodeTB.Size = new Size(141, 27);
             addNodeTB.TabIndex = 4;
-            addNodeTB.Tag = "Значение";
+            addNodeTB.Tag = "Value";
             // 
             // fromTB
             // 
@@ -93,7 +93,7 @@
             addEdgeBtn.Name = "addEdgeBtn";
             addEdgeBtn.Size = new Size(143, 31);
             addEdgeBtn.TabIndex = 8;
-            addEdgeBtn.Text = "Добавить дугу";
+            addEdgeBtn.Text = "Add an arc";
             addEdgeBtn.UseVisualStyleBackColor = true;
             addEdgeBtn.Click += addEdgeBtn_Click;
             // 
@@ -131,7 +131,7 @@
             maxMultBtn.Name = "maxMultBtn";
             maxMultBtn.Size = new Size(175, 29);
             maxMultBtn.TabIndex = 11;
-            maxMultBtn.Text = "Рассчитать кратность";
+            maxMultBtn.Text = "Calculate the multiplicity";
             maxMultBtn.UseVisualStyleBackColor = true;
             maxMultBtn.Click += maxMultBtn_Click;
             // 
@@ -141,7 +141,7 @@
             label2.Name = "label2";
             label2.Size = new Size(175, 43);
             label2.TabIndex = 12;
-            label2.Text = "Поиск максимальной кратности";
+            label2.Text = "Find maximum multiplicity";
             // 
             // saveBtn
             // 
@@ -149,7 +149,7 @@
             saveBtn.Name = "saveBtn";
             saveBtn.Size = new Size(177, 29);
             saveBtn.TabIndex = 13;
-            saveBtn.Text = "Сохранить в файл";
+            saveBtn.Text = "Save to file";
             saveBtn.UseVisualStyleBackColor = true;
             saveBtn.Click += saveBtn_Click;
             // 
@@ -159,7 +159,7 @@
             loadBtn.Name = "loadBtn";
             loadBtn.Size = new Size(176, 28);
             loadBtn.TabIndex = 14;
-            loadBtn.Text = "Загрузить из файла";
+            loadBtn.Text = "Load from file";
             loadBtn.UseVisualStyleBackColor = true;
             loadBtn.Click += loadBtn_Click;
             // 

@@ -50,7 +50,7 @@ namespace GraphsVisualisation
             {
                 if (node.id == newNode.id)
                 {
-                    throw new Exception("Уже есть узел с таким id");
+                    throw new Exception("A node with that ID already exists");
                 }
             }
             NodeList.Add(newNode);
@@ -70,7 +70,7 @@ namespace GraphsVisualisation
             }
             if (fromNode == null || toNode == null)
             {
-                throw new Exception("Нет нужных узлов!");
+                throw new Exception("The required nodes are missing!");
             }
             Edge newEdge = new Edge(fromNode, toNode);
             EdgeList.Add(newEdge);
@@ -93,8 +93,8 @@ namespace GraphsVisualisation
             {
                 multiplicity[edge] = EdgeList.Count(SuchAnEdge => SuchAnEdge.From == edge.From && SuchAnEdge.To == edge.To);
             }
-            //Поиск максимальной кратности среди всех ребер
-            foreach(var mult in multiplicity)
+            //Search for the maximum multiplicity among all edges
+            foreach (var mult in multiplicity)
             {
                 if (mult.Value > maxMultiplicity)
                 {
@@ -102,7 +102,7 @@ namespace GraphsVisualisation
                     maxMultEdge = mult.Key;
                 }
             }
-            tb.Text = $"Максимальную кратность {maxMultiplicity} имеет ребро {maxMultEdge.From.id} -> {maxMultEdge.To.id}";
+            tb.Text = $"Maximum multiplicity {maxMultiplicity} has a rib {maxMultEdge.From.id} -> {maxMultEdge.To.id}";
             return maxMultiplicity;
         }
 
