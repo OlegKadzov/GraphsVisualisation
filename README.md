@@ -17,7 +17,7 @@ In addition, thanks to the use of double buffering, you can move vertices with t
 <p align = "center">Figure 4 – Moved the nodes with the mouse</p> <br>
 
 ![Figure 5 – Added 1 more edge (1.5) and 2 edges (4.1) and calculated the maximum multiplicity](images%20for%20readme/pic5.png)
-<p align = "center">Figure 5 – Added 1 more edge (1.5) and 2 edges (4.1) and calculated the maximum multiplicity</p> <br>
+<p align = "center">Figure 5 – Calculatin the maximum multiplicity of edge</p> <br>
 
 ![Figure 6 – Saved the graph to a file](images%20for%20readme/pic6.png)
 <p align = "center">Figure 6 – Saved the graph to a file</p>
